@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/jessevdk/go-assets"
+	"github.com/bcarlin/go-assets"
 	"github.com/jessevdk/go-flags"
 	"os"
 )
@@ -12,6 +12,7 @@ func main() {
 		VariableName string `short:"v" long:"variable" description:"The name of the generated asset tree" default:"Assets"`
 		StripPrefix  string `short:"s" long:"strip-prefix" description:"Strip the specified prefix from all paths"`
 		Output       string `short:"o" long:"output" description:"File to write output to, or - to write to stdout" default:"-"`
+		Tags         string `short:"t" long:"tags" description:"A list of tags to include in the generated assets" default:""`
 	}
 
 	p := flags.NewParser(&opts, flags.Default)
@@ -27,6 +28,7 @@ func main() {
 		PackageName:  opts.PackageName,
 		VariableName: opts.VariableName,
 		StripPrefix:  opts.StripPrefix,
+		Tags:         opts.Tags,
 	}
 
 	for _, f := range args {
